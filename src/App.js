@@ -1,13 +1,18 @@
 // in src/App.tsx
-import { Admin, Resource, ListGuesser, EditGuesser } from "react-admin";
+import { Admin, Resource} from "react-admin";
 
-import { dataProvider } from "./api/dataprovider";
+import {customDataProvider} from "./api/customprovider";
+import {AlbumsList, AlbumsEdit, AlbumsCreate} from "./Entidades/albums";
+import {ArtistsList, ArtistsEdit, ArtistsCreate} from "./Entidades/artists";
+import {MusicsCreate, MusicsEdit, MusicsList} from "./Entidades/musics";
+import {Album, LibraryMusic, SpatialAudioOff} from "@mui/icons-material";
+
 
 const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource name="albums" list={ListGuesser} edit={EditGuesser} />
-    <Resource name="artists" list={ListGuesser} edit={EditGuesser} />
-    <Resource name="music" list={ListGuesser} edit={EditGuesser} /> 
+  <Admin dataProvider={customDataProvider}>
+    <Resource name="artists" list={ArtistsList} edit={ArtistsEdit} create={ArtistsCreate} recordRepresentation="name" icon={SpatialAudioOff} />
+    <Resource name="albums" list={AlbumsList} edit={AlbumsEdit} create={AlbumsCreate} recordRepresentation="name" icon={Album} />
+    <Resource name="musics" list={MusicsList} edit={MusicsEdit} create={MusicsCreate} icon={LibraryMusic} />
   </Admin>
 );
 

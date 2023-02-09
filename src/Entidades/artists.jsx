@@ -2,17 +2,19 @@ import {
     List,
     Datagrid,
     TextField,
-    ReferenceField,
     DateField,
     Create,
     EditButton,
     Edit,
     SimpleForm,
-    ReferenceInput,
     TextInput,
-  } from "react-admin";
-  
-export const ArtistList = () => (
+    DateInput,
+    ImageField,
+    ImageInput,
+} from "react-admin";
+
+
+export const ArtistsList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -23,20 +25,23 @@ export const ArtistList = () => (
   </List>
 );
 
-export const ArtistEdit = () => (
+export const ArtistsEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source="name" />
-      <TextInput source="birth_date" />
+      <DateInput source="birth_date" />
+      <ImageInput source="photo" label="Photo">
+        <ImageField source="src" />
+      </ImageInput>
     </SimpleForm>
   </Edit>
 );
 
-export const ArtistCreate = () => (
+export const ArtistsCreate = () => (
   <Create>
     <SimpleForm>
       <TextInput source="name" />
-      <TextInput source="birth_date" />
+      <DateInput source="birth_date" />
     </SimpleForm>
   </Create>
 );

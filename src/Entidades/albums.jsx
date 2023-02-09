@@ -9,13 +9,14 @@ import {
     Edit,
     SimpleForm,
     ReferenceInput,
-    TextInput,
-  } from "react-admin";
-  
+    TextInput, DateInput,
+} from "react-admin";
+
+
   export const AlbumsList = () => (
     <List>
       <Datagrid rowClick="edit">
-        <ReferenceField source="artist_id" reference="artist" />
+        <ReferenceField source="artist_id" reference="artists" />
         <TextField source="id" />
         <TextField source="name" />
         <DateField source="release_date" />
@@ -27,10 +28,9 @@ import {
   export const AlbumsEdit = () => (
     <Edit>
       <SimpleForm>
-        <ReferenceInput source="artist_id" reference="albums" />
+        <ReferenceInput source="id" reference="artists" />
         <TextInput source="name" />
-        <TextInput source="release_date"/>
-        <TextInput source="artist_id"/>
+        <DateInput source="release_date"/>
       </SimpleForm>
     </Edit>
   );
@@ -38,10 +38,9 @@ import {
 export const AlbumsCreate = () => (
   <Create>
     <SimpleForm>
-        <ReferenceInput source="artist_id" reference="albums" />
+        <ReferenceInput source="artist_id" reference="artists" />
         <TextInput source="name" />
-        <TextInput source="release_date"/>
-        <TextInput source="artist_id"/>
+        <DateInput source="release_date"/>
     </SimpleForm>
   </Create>
 );
