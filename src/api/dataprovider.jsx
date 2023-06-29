@@ -30,6 +30,14 @@ export const dataProvider= {
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({ data: json })),
 
+    upload : (resource, params) => {
+        const url = `${apiUrl}/${resource}/${params.id}/upload`;
+        return httpClient(url, {
+            method: 'POST',
+            body: JSON.stringify(params.data),
+        }).then(({ json }) => ({ data: json }));
+    },
+
     create: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/`, {
             method: 'POST',

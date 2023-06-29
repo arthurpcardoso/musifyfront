@@ -1,7 +1,6 @@
 import {dataProvider} from "./dataprovider";
 
 
-
 export const customDataProvider = {
     ...dataProvider,
     update: (resource, params) => {
@@ -9,20 +8,22 @@ export const customDataProvider = {
             return dataProvider.update(resource, params);
         }
 
-        const newPicture = [params.data.photo.rawFile]
+        console.log(params.data);
 
-        return Promise.all(newPicture.map(convertFileToBase64))
-            .then(transformedNewPicture =>
+        const newPhoto = [params.data.photo.rawFile]
+
+        return Promise.all(newPhoto.map(convertFileToBase64))
+            .then(base64Photo =>
                 dataProvider.update(resource, {
+                    id: params.id,
                     data: {
                         ...params.data,
-                        photo: transformedNewPicture[0],
-                    },
-                })
+                        photo: base64Photo[0]
+                }})
             );
+
     },
 };
-
 
 const convertFileToBase64 = file =>
     new Promise((resolve, reject) => {
